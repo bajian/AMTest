@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>banner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
+  <style type="text/css">
+    .am-slider-d3 .am-control-thumbs {
+      display: table;
+    }
+
+    .am-slider-d3 .am-control-thumbs li {
+      display: table-cell;
+    }
+    .am-slider-d3 .am-control-thumbs li {
+      display: table-cell;
+      width: 1%;
+    }
+    .banner-img{max-height: 400px}
+  </style>
+</head>
+<body style="margin: 3px">
+
+  <div data-am-widget="slider" class="am-slider am-slider-d3" data-am-slider='{"controlNav":"thumbnails","directionNav":false}' >
+    <ul id="banner_container" class="am-slides">
+    
+    </ul>
+  </div>
+
+</div>
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/amazeui.min.js"></script>
+
+<script type="text/javascript">
+
+var picMaxLen=4;//最大图片数
+
+  var Bn=(function(){
+    var Banner=function(){
+      this._banner=document.getElementById('banner_container');
+    }
+
+    Banner.prototype.addBanner=function(src,value,time){
+      var len=this._banner.childNodes.length;
+      console.log(len);
+      if(len>=picMaxLen){
+      this._banner.removeChild(this._banner.childNodes[len-1]);//移除最初的
+    }
+    var li= document.createElement('li');
+    li.setAttribute('data-thumb', src);
+    li.innerHTML='<img class="banner-img" src="'+src+'"><div class="am-slider-desc"><small class="am-slider-title">'+value+'</small><small>'+time+'</small></div>';
+    this._banner.insertBefore(li,this._banner.childNodes[0]);
+    // $.AMUI.figure.init();
+    // $.AMUI.slider.init();
+  }
+
+  return new Banner();
+
+})();
+
+Bn.addBanner('http://s.amazeui.org/media/i/demos/bing-1.jpg','http://s.amazeui.org/media/i/demos/bing-1.jpg','123');
+Bn.addBanner('http://s.amazeui.org/media/i/demos/bing-2.jpg','http://s.amazeui.org/media/i/demos/bing-2.jpg','123');
+Bn.addBanner('http://s.amazeui.org/media/i/demos/bing-3.jpg','http://s.amazeui.org/media/i/demos/bing-3.jpg','123');
+Bn.addBanner('http://s.amazeui.org/media/i/demos/bing-4.jpg','http://s.amazeui.org/media/i/demos/bing-4.jpg','123');
+
+</script>
+
+</body>
+</html>
