@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>banner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
+  <style type="text/css">
+    .am-slider-d3 .am-control-thumbs {
+      display: table;
+    }
+
+    .am-slider-d3 .am-control-thumbs li {
+      display: table-cell;
+    }
+    .am-slider-d3 .am-control-thumbs li {
+      display: table-cell;
+      width: 1%;
+    }
+  </style>
+</head>
+<body style="margin: 3px">
+
+  <div data-am-widget="slider" class="am-slider am-slider-d3" data-am-slider='{"controlNav":"thumbnails","directionNav":false}' >
+    <ul id="banner_container" class="am-slides">
+       <!-- <li data-thumb="http://s.amazeui.org/media/i/demos/bing-1.jpg">
+        <img class="s-p" src="http://s.amazeui.org/media/i/demos/bing-1.jpg">
+        <div class="am-slider-desc"><small class="am-slider-title">远方 有一个地方 那里种有我们的梦想</small><small>内容内容内容内容内容</small></div>
+
+      </li> 
+       -->
+      
+    </ul>
+  </div>
+
+<!-- <div style="display: none;" id="figure_container">
+  
+</div> -->
+<ul id="figure_container" data-am-widget="gallery" class="am-gallery am-avg-sm-1
+am-avg-md-3 am-avg-lg-4 am-gallery-default" data-am-gallery="{ pureview: true }" >
+
+</ul>
+
+</div>
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/amazeui.min.js"></script>
+
+<script type="text/javascript">
+  $('.am-slides>li>img').click(function(){
+  // alert(this.src);
+  // console.log(this.parentNode)
+  // $('.am-gallery-item>a>img')[1].click();
+});
+// $('#fg>img').click();
+/*  $('.s-p').click(function(){
+    console.log(this.src);
+    showFigure(this.src,'aaa');
+    $('#fg>img').click();
+  });
+   }*/
+
+var picMaxLen=4;//0-3
+
+
+  var Fg=(function(){
+    var Figure=function(){
+      this._figure=document.getElementById('figure_container');
+
+    }
+
+    Figure.prototype.addFigure=function(src,value,time,id){
+      var len=this._figure.childNodes.length;
+      console.log(len);
+      if(len>=picMaxLen){
+      this._figure.removeChild(this._figure.childNodes[len-1]);//移除最初的
+    }
+    var li= document.createElement('li');
+    li.innerHTML='<div class="am-gallery-item"><a href="'+src+'"class=""><img id="'+id+'" src="'+src+'"alt="'+value+'"/><h8 class="am-gallery-title">'+value+'</h8><div class="am-gallery-desc">'+time+'</div></a></div>';
+    this._figure.insertBefore(li,this._figure.childNodes[0]);
+    $.AMUI.figure.init();
+  }
+
+  return new Figure();
+
+})();
+
+
+  var Bn=(function(){
+    var Banner=function(){
+      this._banner=document.getElementById('banner_container');
+
+    }
+
+    Banner.prototype.addBanner=function(src,value,time){
+      var len=this._banner.childNodes.length;
+      console.log(len);
+      if(len>=picMaxLen){
+      this._banner.removeChild(this._banner.childNodes[len-1]);//移除最初的
+    }
+    var li= document.createElement('li');
+    li.innerHTML='<li data-thumb="'+src+'"><img style="max-height: 400px" class="s-p"src="'+src+'"><div class="am-slider-desc"><small class="am-slider-title">'+value+'</small><small>'+time+'</small></div></li>';
+    this._banner.insertBefore(li,this._banner.childNodes[0]);
+    // $.AMUI.figure.init();
+    // $.AMUI.slider.init();
+  }
+
+  return new Banner();
+
+})();
+
+
+
+Bn.addBanner('http://s.amazeui.org/media/i/demos/bing-1.jpg','http://s.amazeui.org/media/i/demos/bing-1.jpg','123');
+Bn.addBanner('http://s.amazeui.org/media/i/demos/bing-2.jpg','http://s.amazeui.org/media/i/demos/bing-2.jpg','123');
+Bn.addBanner('http://s.amazeui.org/media/i/demos/bing-3.jpg','http://s.amazeui.org/media/i/demos/bing-3.jpg','123');
+Bn.addBanner('http://s.amazeui.org/media/i/demos/bing-4.jpg','http://s.amazeui.org/media/i/demos/bing-4.jpg','123');
+// Bn.addBanner('http://7xkaou.com2.z0.glb.qiniucdn.com/default_avatar.png','http://7xkaou.com2.z0.glb.qiniucdn.com/default_avatar.png','123');
+
+Fg.addFigure('http://s.amazeui.org/media/i/demos/bing-1.jpg','http://s.amazeui.org/media/i/demos/bing-1.jpg','123');
+Fg.addFigure('http://s.amazeui.org/media/i/demos/bing-2.jpg','http://s.amazeui.org/media/i/demos/bing-2.jpg','123');
+Fg.addFigure('http://s.amazeui.org/media/i/demos/bing-3.jpg','http://s.amazeui.org/media/i/demos/bing-3.jpg','123');
+Fg.addFigure('http://s.amazeui.org/media/i/demos/bing-4.jpg','http://s.amazeui.org/media/i/demos/bing-4.jpg','123');
+
+</script>
+
+</body>
+</html>
