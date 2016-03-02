@@ -3,7 +3,7 @@
 <head>
   <title>banner</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="https://rawgit.com/bajian/AMTest/master/assets/css/amazeui.min.css"/>
   <style type="text/css">
     .am-slider-d3 .am-control-thumbs {
       display: table;
@@ -21,49 +21,68 @@
 </head>
 <body style="margin: 3px">
 
-  <div data-am-widget="slider" class="am-slider am-slider-d3" data-am-slider='{"controlNav":"thumbnails","directionNav":false}' >
-    <ul id="banner_container" class="am-slides">
-    
-    </ul>
+
+  <div data-am-flexslider id="banner_container"  class="am-slider am-slider-default"  >
+    <ul class="am-slides">
+      <li data-thumb="http://7xkaou.com2.z0.glb.qiniucdn.com/bxjbgmin.png">
+        <img fid="f_bg" class="banner-img" src="http://7xkaou.com2.z0.glb.qiniucdn.com/bxjbgmin.png" /></li>
+      </ul>
+    </div>
+
+    <div style="display: none" id="myImgContainer">
+      <figure id="myfigure" data-am-widget="figure" class="am am-figure am-figure-default hide"
+      data-am-figure="{  pureview: 'true' }">
+      <img id="myImg" src="http://7xkaou.com2.z0.glb.qiniucdn.com/bxjbgmin.png"
+      data-rel="http://7xkaou.com2.z0.glb.qiniucdn.com/bxjbgmin.png" alt=""
+      />
+    </figure>
   </div>
 
-</div>
+  <script src="https://rawgit.com/bajian/AMTest/master/assets/js/jquery.min.js"></script>
+  <script src="https://rawgit.com/bajian/AMTest/master/assets/js/amazeui.min.js"></script>
 
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/amazeui.min.js"></script>
-
-<script type="text/javascript">
+  <script type="text/javascript">
 
 var picMaxLen=4;//最大图片数
 
-  var Bn=(function(){
-    var Banner=function(){
-      this._banner=document.getElementById('banner_container');
-    }
-
-    Banner.prototype.addBanner=function(src,value,time){
-      var len=this._banner.childNodes.length;
-      console.log(len);
-      if(len>=picMaxLen){
-      this._banner.removeChild(this._banner.childNodes[len-1]);//移除最初的
-    }
-    var li= document.createElement('li');
-    li.setAttribute('data-thumb', src);
-    li.innerHTML='<img class="banner-img" src="'+src+'"><div class="am-slider-desc"><small class="am-slider-title">'+value+'</small><small>'+time+'</small></div>';
-    this._banner.insertBefore(li,this._banner.childNodes[0]);
-    // $.AMUI.figure.init();
-    // $.AMUI.slider.init();
+var Bn=(function(){
+  var Banner=function(){
+    this._banner=$('#banner_container');
   }
 
-  return new Banner();
+  Banner.prototype.addBanner=function(src,value){
+    var len=this._banner.flexslider('count');
+      if(len>=picMaxLen) this._banner.flexslider('removeSlide', len-1);//移除最初的
+      var li='<li data-thumb="'+src+'"><img class="banner-img" src="'+src+'" fv="'+value+'"><div class="am-slider-desc"><small class="am-slider-title">'+value+'</small></div></li>';
+      this._banner.flexslider('addSlide', li,0);
+    }
 
-})();
+    Banner.prototype.showFigure=function(src){
+      $('#myfigure').remove();
+      var fg='<figure id="myfigure" data-am-widget="figure" class="am am-figure am-figure-default " data-am-figure="{pureview:\'true\'}"><img id="fgimg" src="'+src+'"/></figure>';
+      $('#myImgContainer').append(fg);
+      $.AMUI.figure.init();
+      $('#fgimg').click();
+    }
 
-Bn.addBanner('http://s.amazeui.org/media/i/demos/bing-1.jpg','http://s.amazeui.org/media/i/demos/bing-1.jpg','123');
-Bn.addBanner('http://s.amazeui.org/media/i/demos/bing-2.jpg','http://s.amazeui.org/media/i/demos/bing-2.jpg','123');
-Bn.addBanner('http://s.amazeui.org/media/i/demos/bing-3.jpg','http://s.amazeui.org/media/i/demos/bing-3.jpg','123');
-Bn.addBanner('http://s.amazeui.org/media/i/demos/bing-4.jpg','http://s.amazeui.org/media/i/demos/bing-4.jpg','123');
+    return new Banner();
 
+  })();
+
+
+  setTimeout(function(){
+  Bn.addBanner('http://s.amazeui.org/media/i/demos/bing-2.jpg','2','2');
+  Bn.addBanner('http://s.amazeui.org/media/i/demos/bing-3.jpg','3','3');
+  Bn.addBanner('http://s.amazeui.org/media/i/demos/bing-4.jpg','4','4');
+  Bn.addBanner('http://s.amazeui.org/media/i/demos/bing-1.jpg','5','5');
+
+
+},1000); 
+
+
+$(document).on('click', '.banner-img', function () {
+  Bn.showFigure(this.src);
+    });
 </script>
 
 </body>

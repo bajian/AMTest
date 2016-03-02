@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>banner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
+  <style type="text/css">
+    .am-slider-d3 .am-control-thumbs {
+      display: table;
+    }
+
+    .am-slider-d3 .am-control-thumbs li {
+      display: table-cell;
+    }
+    .am-slider-d3 .am-control-thumbs li {
+      display: table-cell;
+      width: 1%;
+    }
+    .banner-img{max-height: 400px}
+  </style>
+</head>
+<body style="margin: 3px">
+<!-- 
+<div class="am-slider am-slider-default" data-am-flexslider id="demo-slider-0">
+  <ul class="am-slides">
+    <li><img src="http://s.amazeui.org/media/i/demos/bing-1.jpg" /></li>
+    <li><img src="http://s.amazeui.org/media/i/demos/bing-2.jpg" /></li>
+  </ul>
+</div> -->
+
+<div  id="demo-slider-0" class="am-slider am-slider-default" data-am-flexslider="{controlNav: 'thumbnails', directionNav: false, slideshow: false}">
+  <ul class="am-slides">
+    <li data-thumb="http://s.amazeui.org/media/i/demos/pure-4.jpg?imageView2/0/w/360">
+      <img src="http://s.amazeui.org/media/i/demos/pure-4.jpg" /></li><li data-thumb="http://s.amazeui.org/media/i/demos/pure-4.jpg?imageView2/0/w/360">
+      <img src="http://s.amazeui.org/media/i/demos/pure-4.jpg" /></li>
+  </ul>
+</div>
+
+
+<div class="am-btn-toolbar">
+  <button type="button" class="am-btn am-btn-primary js-demo-slider-btn" data-action="add">添加 slide</button>
+  <button type="button" class="am-btn am-btn-danger js-demo-slider-btn" data-action="remove">移除 slide</button>
+</div>
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/amazeui.min.js"></script>
+
+<script>
+  $(function() {
+    var $slider = $('#demo-slider-0');
+    var counter = 0;
+    var getSlide = function() {
+      counter++;
+      return '<li data-thumb="http://s.amazeui.org/media/i/demos/pure-4.jpg?imageView2/0/w/360"><img src="http://s.amazeui.org/media/i/demos/pure-4.jpg" /></li>';
+    };
+
+    $('.js-demo-slider-btn').on('click', function() {
+      var action = this.getAttribute('data-action');
+      if (action === 'add') {
+        $slider.flexslider('addSlide', getSlide());
+      } else {
+        var count = $slider.flexslider('count');
+        count > 1 && $slider.flexslider('removeSlide', $slider.flexslider('count') - 1);
+      }
+    });
+
+  });
+</script>
+
+</body>
+</html>

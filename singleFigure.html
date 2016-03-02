@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>banner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
+  <style type="text/css">
+    .am-slider-d3 .am-control-thumbs {
+      display: table;
+    }
+
+    .am-slider-d3 .am-control-thumbs li {
+      display: table-cell;
+    }
+    .am-slider-d3 .am-control-thumbs li {
+      display: table-cell;
+      width: 1%;
+    }
+    .banner-img{max-height: 400px}
+  </style>
+</head>
+<body style="margin: 3px">
+<ul id="figure_container" data-am-widget="gallery" class="am-gallery am-avg-sm-2 am-gallery-imgbordered" data-am-gallery="{pureview:{target: 'a'}}">
+  <li>
+    <div class="am-gallery-item">
+      <a href="http://7xkaou.com2.z0.glb.qiniucdn.com/bxjbgmin.png" title="远方 有一个地方 那里种有我们的梦想"><img src="http://7xkaou.com2.z0.glb.qiniucdn.com/bxjbgmin.png" alt="远方 有一个地方 那里种有我们的梦想"/>
+        </a>
+    </div>
+  </li>
+  <li>
+    <div class="am-gallery-item">
+      <a href="https://farm3.staticflickr.com/2941/15346557971_d8f3d52978_k.jpg" title="某天 也许会相遇 相遇在这个好地方"><img src="https://farm3.staticflickr.com/2941/15346557971_dec5c9ac36_z.jpg" alt="某天 也许会相遇 相遇在这个好地方"/>
+        </a>
+    </div>
+  </li>
+</ul>
+
+<!-- <ul id="figure_container" data-am-widget="gallery" class="am-gallery am-avg-sm-4 am-gallery-imgbordered" data-am-gallery="{pureview:{weChatImagePreview: false}}">
+<div class="am-gallery-item"><a href="http://7xkaou.com2.z0.glb.qiniucdn.com/bxjbgmin.png"class=""><img id="f_bg" src="http://7xkaou.com2.z0.glb.qiniucdn.com/bxjbgmin.png"alt="首页图片"/></a></div>
+</ul> -->
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/amazeui.min.js"></script>
+
+<script type="text/javascript">
+
+var picMaxLen=4;//最大图片数
+
+
+  var Fg=(function(){
+    var Figure=function(){
+      this._figure=document.getElementById('figure_container');
+
+    }
+    
+
+    Figure.prototype.addFigure=function(src,value,id){
+      var len=this._figure.childNodes.length-3;
+      console.log(len);
+      if(len>=picMaxLen){
+      this._figure.removeChild(this._figure.childNodes[0]);//移除最初的
+    }
+    var li= document.createElement('li');
+    li.innerHTML='<div class="am-gallery-item"><a href="'+src+'"title="'+value+'"><img src="'+src+'"alt="'+value+'"/></a></div>';
+    this._figure.appendChild(li);
+    $.AMUI.gallery.init()
+  }
+
+  return new Figure();
+
+})();
+
+setTimeout(function(){
+  // $.AMUI.gallery.init()
+  Fg.addFigure('http://s.amazeui.org/media/i/demos/bing-2.jpg','2','2');
+  // Bn.addBanner('http://s.amazeui.org/media/i/demos/bing-3.jpg','3','3');
+  Fg.addFigure('http://s.amazeui.org/media/i/demos/bing-3.jpg','3','3');
+  // Bn.addBanner('http://s.amazeui.org/media/i/demos/bing-4.jpg','4','4');
+  Fg.addFigure('http://s.amazeui.org/media/i/demos/bing-4.jpg','4','4');
+  // Bn.addBanner('http://s.amazeui.org/media/i/demos/bing-1.jpg','5','5');
+  // Fg.addFigure('http://s.amazeui.org/media/i/demos/bing-1.jpg','5','5');
+
+},1000);
+
+
+
+</script>
+
+</body>
+</html>

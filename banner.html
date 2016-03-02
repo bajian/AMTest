@@ -37,7 +37,6 @@
 </div> -->
 <ul id="figure_container" data-am-widget="gallery" class="am-gallery am-avg-sm-1
 am-avg-md-3 am-avg-lg-4 am-gallery-default" data-am-gallery="{ pureview: true }" >
-
 </ul>
 
 </div>
@@ -75,7 +74,7 @@ var picMaxLen=4;//0-3
       this._figure.removeChild(this._figure.childNodes[len-1]);//移除最初的
     }
     var li= document.createElement('li');
-    li.innerHTML='<div class="am-gallery-item"><a href="'+src+'"class=""><img id="'+id+'" src="'+src+'"alt="'+value+'"/><h8 class="am-gallery-title">'+value+'</h8><div class="am-gallery-desc">'+time+'</div></a></div>';
+    li.innerHTML='<div class="am-gallery-item"><a href="'+src+'"class=""><img id="'+id+'" src="'+src+'"alt="'+value+'"/><h8 class="am-gallery-title">'+value+'</h8></a></div>';
     this._figure.insertBefore(li,this._figure.childNodes[0]);
     $.AMUI.figure.init();
   }
@@ -101,7 +100,7 @@ var picMaxLen=4;//0-3
     li.innerHTML='<li data-thumb="'+src+'"><img style="max-height: 400px" class="s-p"src="'+src+'"><div class="am-slider-desc"><small class="am-slider-title">'+value+'</small><small>'+time+'</small></div></li>';
     this._banner.insertBefore(li,this._banner.childNodes[0]);
     // $.AMUI.figure.init();
-    // $.AMUI.slider.init();
+    $.AMUI.slider.init();
   }
 
   return new Banner();
